@@ -1,97 +1,118 @@
-﻿$(document).ready(function () {
-    //检测ie 6789
-    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
-        window.scrollReveal = new scrollReveal({reset: true});
+﻿$(function () {
+
+  // 功能一: 检测ie 6789
+  if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+    window.scrollReveal = new scrollReveal({reset: true});
+  }
+
+  // 功能二: 头部导航子导航显示与隐藏
+  $('.nav>li').hover(function () {
+    $(this).children('ul').stop().slideDown(400);
+  }, function () {
+    $(this).children('ul').stop().slideUp(400);
+  });
+
+  // 功能三: 头部搜索框显示与隐藏,判断搜索内容是否合法
+  $('.search_ico').click(function () {
+    $('.search_bar').toggleClass('search_open');
+    if ($('#keyboard').hasClass('opacity')) {
+      $('#keyboard').removeClass('opacity');
+    } else {
+      setTimeout(function () {
+        $('#keyboard').addClass('opacity');
+      }, 300);
     }
-    /*nav show or hide*/
-    $('.nav>li').hover(function () {
-        $(this).children('ul').stop(true, true).show(400);
-    }, function () {
-        $(this).children('ul').stop(true, true).hide(400);
-    });
-    /*search*/
-    $('.search_ico').click(function () {
-        $('.search_bar').toggleClass('search_open');
-        if ($('#keyboard').val().length > 2) {
-            $('#keyboard').val('');
-            $('#searchform').submit();
-        } else {
-            return false;
-        }
-    });
-    /*banner*/
-    $('#banner').easyFader();
-
-    /*topnav select*/
-    var obj = null;
-    var allMenu = document.getElementById('topnav').getElementsByTagName('a');
-    // console.log(allMenu);
-    obj = allMenu[0];
-    for (i = 1; i < allMenu.length; i++) {
-        if (window.location.href.indexOf(allMenu[i].href) >= 0) {
-            obj = allMenu[i];
-        }
+    if ($('#keyboard').val().length > 2) {
+      $('#keyboard').val('');
+      $('#searchform').submit();
+    } else {
+      return false;
     }
-    obj.id = 'topnav_current';
+  });
 
-    /*mnav dl open*/
-    var oH2 = document.getElementsByTagName('h2')[0];
-    var oUl = document.getElementsByTagName('dl')[0];
-    oH2.onclick = function () {
-        var style = oUl.style;
-        style.display = style.display == 'block' ? 'none' : 'block';
-        oH2.className = style.display == 'block' ? 'open' : '';
-    };
-    //菜单点击效果
-    $('.list_dt').on('click', function () {
-        $('.list_dd').stop();
-        $(this).siblings('dt').removeAttr('id');
-        if ($(this).attr('id') == 'open') {
-            $(this).removeAttr('id').siblings('dd').slideUp();
-        } else {
-            $(this).attr('id', 'open').next().slideDown().siblings('dd').slideUp();
-        }
-    });
+  // 功能四: 主页banner轮播图实现
+  $('#banner').easyFader();
 
-    //回到顶部
-    // browser window scroll (in pixels) after which the "back to top" link is shown
-    var offset = 300,
-        //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
-        offset_opacity = 1200,
-        //duration of the top scrolling animation (in ms)
-        scroll_top_duration = 700,
-        //grab the "back to top" link
-        $back_to_top = $('.cd-top');
+  // 功能五: 主导航下拉列表改变当前页对应选项字体颜色
+  var obj = null;
+  var allMenu = document.getElementById('topnav').getElementsByTagName('a');
+  obj = allMenu[0];
+  for (i = 1; i < allMenu.length; i++) {
+    if (window.location.href.indexOf(allMenu[i].href) >= 0) {
+      obj = allMenu[i];
+    }
+  }
+  obj.id = 'topnav_current';
 
-    //hide or show the "back to top" link
-    $(window).scroll(function () {
-        ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
-        if ($(this).scrollTop() > offset_opacity) {
-            $back_to_top.addClass('cd-fade-out');
-        }
-    });
-    //smooth scroll to top
-    $back_to_top.on('click', function (event) {
-        event.preventDefault();
-        $('body,html').animate({
-                scrollTop: 0,
-            }, scroll_top_duration
-        );
-    });
-    
-    //设置固定关注我们
+  // 功能六: 页面卷去高度达到主导航高度,让主导航背景半透明
+  $(window).on('scroll', function () {
+    if ($(window).scrollTop() > $('header .menu').height()) {
+      $('header .menu').addClass('bg-rgba');
+    } else {
+      $('header .menu').removeClass('bg-rgba');
+    }
+  })
 
-if ($('#follow-us')){
+
+
+  /*mnav dl open*/
+  var oH2 = document.getElementsByTagName('h2')[0];
+  var oUl = document.getElementsByTagName('dl')[0];
+  oH2.onclick = function () {
+    var style = oUl.style;
+    style.display = style.display == 'block' ? 'none' : 'block';
+    oH2.className = style.display == 'block' ? 'open' : '';
+  };
+  //菜单点击效果
+  $('.list_dt').on('click', function () {
+    $('.list_dd').stop();
+    $(this).siblings('dt').removeAttr('id');
+    if ($(this).attr('id') == 'open') {
+      $(this).removeAttr('id').siblings('dd').slideUp();
+    } else {
+      $(this).attr('id', 'open').next().slideDown().siblings('dd').slideUp();
+    }
+  });
+
+  // 回到顶部
+  // browser window scroll (in pixels) after which the "back to top" link is shown
+  var offset = 300,
+  //browser window scroll (in pixels) after which the "back to top" link opacity is reduced
+    offset_opacity = 1200,
+  //duration of the top scrolling animation (in ms)
+    scroll_top_duration = 700,
+  //grab the "back to top" link
+    $back_to_top = $('.cd-top');
+
+  // hide or show the "back to top" link
+  $(window).scroll(function () {
+    ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out');
+    if ($(this).scrollTop() > offset_opacity) {
+      $back_to_top.addClass('cd-fade-out');
+    }
+  });
+  // smooth scroll to top
+  $back_to_top.on('click', function (event) {
+    event.preventDefault();
+    $('body,html').animate({
+        scrollTop: 0,
+      }, scroll_top_duration
+    );
+  });
+
+  // 设置固定关注我们
+  /*
+  if ($('#follow-us')) {
     var followUsPosition = $('#follow-us').offset().top;
     window.onscroll = function () {
-        var nowPosition =  document.documentElement.scrollTop;
-        if (nowPosition - followUsPosition > 0 ) {
-            setTimeout(function () {
-                $('#follow-us').attr('class','guanzhu gd');
-            },150);
-        }else {
-            $('#follow-us').attr('class','guanzhu');
-        }
+      var nowPosition = document.documentElement.scrollTop;
+      if (nowPosition - followUsPosition > 0) {
+        setTimeout(function () {
+          $('#follow-us').attr('class', 'guanzhu gd');
+        }, 150);
+      } else {
+        $('#follow-us').attr('class', 'guanzhu');
+      }
     };
-}
+  }*/
 });
