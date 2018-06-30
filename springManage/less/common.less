@@ -1,1 +1,140 @@
 @charset "UTF-8";
+
+@import "varabal";
+
+// 初始化样式
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+// 左侧侧边栏样式
+.w-aside {
+  width: 180px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: @wColorDeep;
+  transition: left .8s;
+
+  &.current {
+    left: -180px;
+  }
+  .brand {
+    width: 180px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background-color: @wColorCurrent;
+
+    a {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+  .w-user {
+    width: 180px;
+    height: 180px;
+    padding-top: 20px;
+    text-align: center;
+
+    img {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+    p {
+      line-height: 40px;
+      font-size: 18px;
+    }
+  }
+  .nav {
+    a {
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      display: block;
+      color: #fff;
+      padding-left: 40px;
+      border-left: 3px solid transparent;
+
+      &.current {
+        background-color: @wColorCurrent;
+        border-left: 3px solid @wColor;
+      }
+      i {
+        padding-right: 5px;
+      }
+    }
+    .child {
+      display: none;
+
+      &.current {
+        display: block;
+      }
+      a {
+        padding-left: 60px;
+      }
+    }
+  }
+}
+
+// 主题区域公共样式
+.w-main {
+  width: 100%;
+  height: 1000px;
+  padding-left: 180px;
+  padding-top: 70px;
+  transition: padding-left .8s;
+
+  &.current {
+    padding-left: 0px;
+  }
+  // 主题头部样式
+  .w_topbar {
+    width: 100%;
+    height: 50px;
+    padding-left: 180px;
+    background-color: @wColorCurrent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    transition: padding-left .8s;
+
+    &.current {
+      padding-left: 0px;
+    }
+    a {
+      width: 50px;
+      height: 50px;
+      display: block;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+  }
+}
+
+// 退出模态框样式
+#logoutModal {
+  margin-top: 100px;
+  
+  p {
+    color: red;
+    i {
+      padding-right: 5px;
+    }
+  }
+}
+
