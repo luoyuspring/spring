@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@import "varabal";
+
+html,body {
+  width: 100%;
+  height: 100%;
+}
+.w-login-bg {
+  background: url("../images/login-bg.jpg") no-repeat center;
+  background-size: cover;
+  overflow: hidden;
+}
+.w-login {
+  margin-top: 200px;
+  .panel-primary {
+    border-color: @wColor;
+
+    >.panel-heading {
+      background-color: @wColor;
+    }
+    .btn-primary {
+      background-color: @wColor;
+      border-color: @wColor;
+    }
+  }
+}
