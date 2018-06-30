@@ -53,8 +53,6 @@
     }
   })
 
-
-
   /*mnav dl open*/
   var oH2 = document.getElementsByTagName('h2')[0];
   var oUl = document.getElementsByTagName('dl')[0];
