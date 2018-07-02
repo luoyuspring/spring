@@ -6,17 +6,19 @@ $(function () {
 
   // ---------------  左侧侧边栏区域 -------------------
   // 功能一: 点击文章或设置,显示隐藏子菜单
-  $('.w-aside .post,.w-aside .option').on('click', function () {
+  $('.w-aside .post').on('click', function () {
     $(this).next().toggleClass('current');
+    $('.w-aside .option').next().removeClass('current');
+    $('.w-aside .nav a').removeClass('current');
+    $(this).addClass('current');
+  });
+  $('.w-aside .option').on('click', function () {
+    $(this).next().toggleClass('current');
+    $('.w-aside .post').next().removeClass('current');
+    $('.w-aside .nav a').removeClass('current');
+    $(this).addClass('current');
   });
 
-  // 功能二: 当前点击列表高亮
-  $('.w-aside .nav a').on('click', function () {
-    $('.w-aside .nav a').each(function () {
-      $(this).removeClass('current');
-    });
-    $(this).toggleClass('current');
-  });
 
   // ----------------  主题区域头部  ---------------------
   // 功能一: 点击左侧按钮显示或隐藏侧边栏
