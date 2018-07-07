@@ -4,6 +4,14 @@
 
 $(function () {
 
+  // ----------------  进度条功能  ---------------------
+  $(document).on('ajaxStart', function() {
+    NProgress.start();
+  });
+  $(document).on('ajaxComplete', function() {
+    NProgress.done();
+  });
+
   // ---------------  左侧侧边栏区域 -------------------
   // 功能一: 点击文章或设置,显示隐藏子菜单
   $('.w-aside .post').on('click', function () {

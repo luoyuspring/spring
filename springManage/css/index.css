@@ -107,13 +107,13 @@ a:active {
   text-align: center;
   color: #fff;
 }
-#logoutModal {
+.modal {
   margin-top: 100px;
 }
-#logoutModal p {
+.modal p {
   color: red;
 }
-#logoutModal p i {
+.modal p i {
   padding-right: 5px;
 }
 .w-content .echarts-left,

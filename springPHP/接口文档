@@ -1,0 +1,84 @@
+一: user页接口文档
+  1. 请求全部用户信息
+    请求方式: get
+    请求地址: /spring/springPHP/user/getUsers.php
+    请求数据: { page : 页数, pageSize : 每页条数 }
+    返回数据格式: json
+    示例: 
+    {
+      result:[
+        0 : {
+          avatar:"uploads/dog.jpg"
+          email:"itcast@itcast.cn8"
+          id:"4"
+          nickname:"大春哥"
+          password:"kjks"
+          sex:"男"
+          slug:"cg8"
+          status:"activated"
+        }
+      ]
+    } 
+
+  2. 删除用户信息
+    请求方式: get
+    请求地址: /spring/springPHP/user/delUser.php
+    请求数据: { userId : 单条id为number,多条id为字符串(1,2,3,4,5) }
+    返回数据格式: json
+    示例: 如果返回数据int为true 则本页已经无数据
+    {
+      int : true/false
+    }
+
+  3. 请求指定用户信息
+    请求方式: get
+    请求地址: /spring/springPHP/user/getUserEdit.php
+    请求数据: { userId : 指定用户id }
+    返回数据格式: json
+    示例: 
+    {
+      result:[
+        0 : {
+          avatar:"uploads/dog.jpg"
+          email:"itcast@itcast.cn8"
+          id:"4"
+          nickname:"大春哥"
+          password:"kjks"
+          sex:"男"
+          slug:"cg8"
+          status:"activated"
+        }
+      ]
+    } 
+
+  4. 修改用户信息
+    请求方式: post
+    请求地址: /spring/springPHP/user/updateUser.php
+    请求数据:{ 
+              avatar: 图片文件
+              email: 邮箱
+              id: 需要修改的用户id
+              nickname: 昵称
+              password: 密码
+              sex: 性别
+              slug: 别名
+            }
+    返回数据格式: 无
+
+  5. 添加用户
+    请求方式: post
+    请求地址: /spring/springPHP/user/addUser.php
+    请求数据:{ 
+              avatar: 图片文件
+              email: 邮箱
+              nickname: 昵称
+              password: 密码
+              sex: 性别
+              slug: 别名
+            }
+    返回数据格式: 无
+
+   
+
+
+
